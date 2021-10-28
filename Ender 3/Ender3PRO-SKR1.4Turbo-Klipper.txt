@@ -1,0 +1,507 @@
+######################################################################
+#                           Ender 3 PRO
+######################################################################
+
+[include kiauh_macros.cfg]
+[mcu]
+serial: /dev/serial/by-id/usb-Klipper_lpc1769_0D50011402094AAFFBAF5E5DC62000F5-if00
+restart_method: command
+
+[printer]
+kinematics: cartesian
+max_velocity: 300
+max_accel: 3000
+max_z_velocity: 5
+max_z_accel: 100
+
+######################################################################
+#                           Setting Fan
+######################################################################
+
+[fan]
+pin: P2.3
+hardware_pwm: false
+
+[heater_fan extruder_fan]
+pin: P2.4
+heater: extruder
+heater_temp: 50.0
+fan_speed: 1.0
+
+######################################################################
+#                        Stepper Motors X
+######################################################################
+
+[stepper_x]
+step_pin: P2.2
+dir_pin: !P2.6
+enable_pin: !P2.1
+microsteps: 16
+rotation_distance: 40
+endstop_pin: tmc2209_stepper_x:virtual_endstop # pin !P1.29
+position_endstop: 0
+position_max: 235
+homing_retract_dist: 0
+homing_speed: 20
+
+[tmc2209 stepper_x]
+uart_pin: P1.10
+interpolate: True
+run_current: 0.580
+hold_current: 0.290
+stealthchop_threshold: 250
+diag_pin: ^P1.29
+driver_SGTHRS: 53
+
+######################################################################
+#                        Stepper Motors Y
+######################################################################
+
+[stepper_y]
+step_pin: P0.19
+dir_pin: !P0.20
+enable_pin: !P2.8
+microsteps: 16
+rotation_distance: 40
+endstop_pin: tmc2209_stepper_y:virtual_endstop # pin !P1.28
+position_endstop: 0
+position_max: 235
+homing_retract_dist: 0
+homing_speed: 20
+
+[tmc2209 stepper_y]
+uart_pin: P1.9
+interpolate: True
+run_current: 0.580
+hold_current: 0.290
+stealthchop_threshold: 250
+diag_pin: ^P1.28
+driver_SGTHRS: 53
+
+######################################################################
+#                        Stepper Motors Z
+######################################################################
+
+[stepper_z]
+step_pin: P0.22
+dir_pin: P2.11
+enable_pin: !P0.21
+microsteps: 16
+rotation_distance: 7.84
+endstop_pin: probe:z_virtual_endstop # pin !P1.27
+position_min: -10
+position_max: 250
+homing_speed: 5
+
+[tmc2209 stepper_z]
+uart_pin: P1.8
+interpolate: True
+run_current: 0.580
+hold_current: 0.290
+stealthchop_threshold: 250
+
+######################################################################
+#                        Stepper Motors Extruder
+######################################################################
+
+[extruder]
+step_pin: P2.13
+dir_pin: !P0.11
+enable_pin: !P2.12
+microsteps: 16
+rotation_distance: 34.002
+nozzle_diameter: 0.400
+filament_diameter: 1.750
+pressure_advance = 0.54
+heater_pin: P2.7
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: P0.24
+#control: pid
+#pid_Kp: 21.527
+#pid_Ki: 1.063
+#pid_Kd: 108.982
+min_temp: 0
+max_temp: 260
+max_extrude_only_distance: 300.0
+
+[tmc2209 extruder]
+uart_pin: P1.4
+interpolate: True
+run_current: 0.660
+hold_current: 0.330
+
+######################################################################
+#                           Setting bed 
+######################################################################
+
+[heater_bed]
+heater_pin: P2.5
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: P0.25
+#control: pid
+#pid_Kp: 54.027
+#pid_Ki: 0.770
+#pid_Kd: 948.182
+min_temp: 0
+max_temp: 130
+
+######################################################################
+#                  EXP1 / EXP2 (display) pins 
+######################################################################
+
+# 128x64 Full Graphic Creality CR10 / ENDER 3 stockdisplay
+[display]
+lcd_type: st7920
+cs_pin: EXP1_7
+sclk_pin: EXP1_6
+sid_pin: EXP1_8
+encoder_pins: ^EXP1_5, ^EXP1_3
+click_pin: ^!EXP1_2
+
+[output_pin beeper]
+pin: EXP1_1
+
+[board_pins]
+aliases:
+    # EXP1 header
+    EXP1_1=P1.30, EXP1_3=P1.18, EXP1_5=P1.20, EXP1_7=P1.22, EXP1_9=<GND>,
+    EXP1_2=P0.28, EXP1_4=P1.19, EXP1_6=P1.21, EXP1_8=P1.23, EXP1_10=<5V>,
+    # EXP2 header
+    EXP2_1=P0.17, EXP2_3=P3.26, EXP2_5=P3.25, EXP2_7=P1.31, EXP2_9=<GND>,
+    EXP2_2=P0.15, EXP2_4=P0.16, EXP2_6=P0.18, EXP2_8=<RST>, EXP2_10=<NC>
+    # Pins EXP2_1, EXP2_6, EXP2_2 are also MISO, MOSI, SCK of bus "ssp0"
+
+# See the sample-lcd.cfg file for definitions of common LCD displays.
+
+######################################################################
+#                                 ADXL345
+######################################################################
+
+[input_shaper]
+shaper_freq_x: 85
+shaper_freq_y: 45
+shaper_type_y: mzv
+
+[mcu rpi]
+serial: /tmp/klipper_host_mcu
+
+[adxl345]
+cs_pin: rpi:None
+
+[resonance_tester]
+accel_chip: adxl345
+probe_points:
+    100,100,20  # an example
+
+######################################################################
+#                           BLTouch configuration 
+######################################################################
+
+[bltouch]
+sensor_pin: ^P0.10
+control_pin: P2.0
+x_offset: -51
+y_offset: -12
+#z_offset: 0
+
+[safe_z_home]
+home_xy_position: 117.5,117.5
+z_hop: 10 # Move up
+z_hop_speed: 5
+
+[bed_mesh]
+speed: 80
+horizontal_move_z: 5
+mesh_min: 52,15
+mesh_max: 167,205
+probe_count: 5,5
+algorithm: bicubic
+
+[bed_screws]
+screw1: 32, 35
+screw1_name: front left screw
+screw2: 32, 206
+screw2_name: front right screw
+screw3: 202, 206
+screw3_name: rear right screw
+screw4: 202, 35
+screw4_name: rear left screw
+
+######################################################################
+#                          pause_resume
+######################################################################
+
+[pause_resume]
+
+######################################################################
+#                         display_status
+######################################################################
+
+[display_status]
+
+######################################################################
+#                         virtual_sdcard
+######################################################################
+
+[virtual_sdcard]
+path: ~/gcode_files
+
+######################################################################
+#                         G29 command
+######################################################################
+
+# See the sample-lcd.cfg file for definitions of common LCD displays.
+[gcode_macro G29]
+gcode:
+    BED_MESH_PROFILE load=default
+
+######################################################################
+#                            PAUSE
+######################################################################
+[gcode_macro PAUSE]
+rename_existing: BASE_PAUSE
+default_parameter_X: 220    # edit to your preferred park position
+default_parameter_Y: 220    # edit to your preferred park position
+default_parameter_Z: 10     # edit to your preferred park position
+default_parameter_E: 1      # edit to your preferred retract length
+gcode:
+    SAVE_GCODE_STATE NAME=PAUSE_state
+    BASE_PAUSE
+    G91
+    G1 E-{E} F2100
+    G1 Z{Z}
+    G90
+    G1 X{X} Y{Y} F6000
+
+######################################################################
+#                              RESUME
+######################################################################
+
+[gcode_macro RESUME]
+rename_existing: BASE_RESUME
+default_parameter_E: 1      # edit to your preferred retract length
+gcode:
+    G91
+    G1 E{E} F2100
+    G90
+    RESTORE_GCODE_STATE NAME=PAUSE_state MOVE=1
+    BASE_RESUME
+
+######################################################################
+#                         CANCEL_PRINT
+######################################################################
+
+[gcode_macro CANCEL_PRINT]
+rename_existing: BASE_CANCEL_PRINT
+gcode:
+    TURN_OFF_HEATERS
+    CLEAR_PAUSE
+    SDCARD_RESET_FILE
+    BASE_CANCEL_PRINT
+
+######################################################################
+#                      PART_COOLING_FAN_ON
+######################################################################
+[gcode_macro PART_COOLING_FAN_ON]
+gcode:
+    M106 S255
+
+######################################################################
+#                      PART_COOLING_FAN_OFF
+######################################################################
+
+[gcode_macro PART_COOLING_FAN_OFF]
+gcode:
+    M106 S0
+
+######################################################################
+#                           PRIME_EXTRUDER
+######################################################################
+
+# Do nozzle priming
+[gcode_macro PRIME_EXTRUDER]
+gcode:
+    M117 Priming
+    G92 E0
+    G1 X10.1 Y20 Z2.0 F2000
+    G1 X10.1 Y200 Z0.28 F2000.0 E15; Draw the first line
+    G1 X10.4 Y200 Z0.28 F5000.0; Move to the side a little
+    G1 X10.4 Y20.0 Z0.28 F2000.0 E30; Draw the second line
+    G92 E0 
+    G1 F2400 E-0.7 # Small retract to remove pressure
+    G1 Z2.0 F3000 ;Move Z Axis up
+
+######################################################################
+#                            START_PRINT
+######################################################################
+
+[gcode_macro START_PRINT]
+default_parameter_BED_TEMP: 60
+default_parameter_EXTRUDER_TEMP: 200
+gcode:
+    # Home the printer
+    G28
+    # Load Mesh Bed Level
+    G29
+    # Start bed heating
+    M117 Heating bed
+    M140 S{BED_TEMP}
+    # Use absolute coordinates
+    G90
+    # Reset the G-Code Z offset (adjust Z offset if needed)
+    SET_GCODE_OFFSET Z=0.0
+    # Move the nozzle near the bed
+    G1 Z5 F3000
+    # Move the nozzle very close to the bed
+    G1 Z0.15 F300
+    # Wait for bed to reach temperature
+    M190 S{BED_TEMP}
+    # Start nozzle heating
+    M117 Heating nozzle
+    M104 S{EXTRUDER_TEMP}
+    # Set and wait for nozzle to reach temperature
+    M109 S{EXTRUDER_TEMP}
+    # Prime line
+    PRIME_EXTRUDER
+    M117 Printing
+
+######################################################################
+#                             END_PRINT
+######################################################################
+
+[gcode_macro END_PRINT]
+gcode:
+    # Move nozzle away from print while retracting
+    G91
+    # Raise nozzle and retract
+    G1 E-2 F1800
+    G1 Z5 F3000
+    # Move to absolute position
+    G90
+    G1 X10 Y200 F2000
+    # Turn off bed, extruder, and fan
+    M140 S0
+    M104 S0
+    M106 S0
+    # Disable steppers
+    M84
+    M117 Print complete
+
+######################################################################
+#                           LOAD_FILAMENT
+######################################################################
+
+[gcode_macro LOAD_FILAMENT]
+default_parameter_EXTRUDER_TEMP: 200
+default_parameter_BOWDEN_TUBE_LENGTH: 600
+gcode:
+    # Let the printer know you are following this point with metric values
+    G21
+    # Let the printer know you are using absolute positioning
+    G90
+    # Start nozzle heating
+    M117 Heating nozzle
+    M104 S{EXTRUDER_TEMP}
+    # Set and wait for nozzle to reach temperature
+    M109 S{EXTRUDER_TEMP}
+    # Reset the position of the extruder
+    G92 E0
+    # Feed BOWDEN_TUBE_LENGTH mm of filament at 2000 mm/minute speed.
+    G1 E{BOWDEN_TUBE_LENGTH} F2000 
+    # Reset the position of the extruder
+    G92 E0
+
+######################################################################
+#                           UNLOAD_FILAMENT
+######################################################################
+
+[gcode_macro UNLOAD_FILAMENT]
+default_parameter_EXTRUDER_TEMP: 200
+default_parameter_BOWDEN_TUBE_LENGTH: 700
+gcode:
+    # Let the printer know you are following this point with metric values
+    G21
+    # Let the printer know you are using absolute positioning
+    G90
+    # Start nozzle heating
+    M117 Heating nozzle
+    M104 S{EXTRUDER_TEMP}
+    # Set and wait for nozzle to reach temperature
+    M109 S{EXTRUDER_TEMP}
+    # Reset the position of the extruder
+    G92 E0
+    # Extrude a short distance before unloading to avoid blob forming
+    G1 E10 F100
+    # Reset the position of the extruder
+    G92 E0
+    # Retract BOWDEN_TUBE_LENGTH mm of filament at 2000 mm/minute speed.
+    G1 E-700 F2000
+    # Reset the position of the extruder
+    G92 E0
+    # Display message on LCD-display to remove the filament
+    M117 Remove filament
+
+######################################################################
+#                       Filament Change
+######################################################################
+
+# M600: Filament Change. This macro will pause the printer, move the
+# tool to the change position, and retract the filament 50mm. Adjust
+# the retraction settings for your own extruder. After filament has
+# been changed, the print can be resumed from its previous position
+# with the "RESUME" gcode.
+
+[pause_resume]
+
+[gcode_macro M600]
+gcode:
+    {% set X = params.X|default(50)|float %}
+    {% set Y = params.Y|default(0)|float %}
+    {% set Z = params.Z|default(10)|float %}
+    SAVE_GCODE_STATE NAME=M600_state
+    PAUSE
+    G91
+    G1 E-.8 F2700
+    G1 Z{Z}
+    G90
+    G1 X{X} Y{Y} F3000
+    G91
+    G1 E-50 F1000
+    RESTORE_GCODE_STATE NAME=M600_state
+
+#*# <---------------------- SAVE_CONFIG ---------------------->
+#*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
+#*#
+#*# [extruder]
+#*# control = pid
+#*# pid_kp = 26.175
+#*# pid_ki = 1.283
+#*# pid_kd = 133.493
+#*#
+#*# [heater_bed]
+#*# control = pid
+#*# pid_kp = 68.865
+#*# pid_ki = 1.435
+#*# pid_kd = 826.375
+#*#
+#*# [bltouch]
+#*# z_offset = 0.230
+#*#
+#*# [bed_mesh default]
+#*# version = 1
+#*# points =
+#*# 	0.034475, -0.002462, 0.009850, 0.014775, 0.049250
+#*# 	0.061563, 0.007388, 0.009850, 0.000000, 0.034475
+#*# 	0.049250, -0.012312, -0.012312, -0.027087, 0.007388
+#*# 	0.027088, -0.029550, -0.032012, -0.049250, -0.032012
+#*# 	0.002463, -0.054175, -0.049250, -0.064025, -0.054175
+#*# tension = 0.2
+#*# min_x = 52.0
+#*# algo = bicubic
+#*# y_count = 5
+#*# mesh_y_pps = 2
+#*# min_y = 15.0
+#*# x_count = 5
+#*# max_y = 205.0
+#*# mesh_x_pps = 2
+#*# max_x = 167.0
