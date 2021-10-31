@@ -6,20 +6,26 @@ Un'altra importante modifica è l'alimentatore, che passa da un alimentatore non
 ## Principali problematiche della stampante
 ### Mettere in squadra la stampante durante l'assemblaggio
 Una dei primi passi per avere una stampante in grado di offrire una buona superficie dei pezzi stampati è di montarla correttamente durante l'assemblaggio. Oltre a verificare che tutte le parti assemblate sono state serrate correttamente e montate in modo che i componenti a scorrimento siano in grado di farlo senza giochi o frizioni eccessive, è anche necessario dare un occhio di riguardo al montaggio del portale dell'asse X sul corpo della stampante. Dopo aver avvitato le brugole che lo fissano al corpo, è bene aiutarsi con una squadra prima di serrarlo per assicurarsi che formi un angolo di 90 gradi rispetto al piano di stampa.
+
 ### Regolazione dei dadi eccentrici
 Un'altra operazione - che andrà ripetuta nel tempo come parte della ordinaria manutenzione - è controllare la regolazione degli eccentrici. Tutte le parti della macchina che necessitano di scorrere sugli estrusi di alluminio quali il carrello dell'hotend, il carro dell'asse X rispetto ai due estrusi dell'asse Z ed il piano di stampa sull'asse Y sono dotate di tre ruote gommate, di cui una delle tre possiede un dado di regolazione al posto del distanziale. Tale dado presenta un foro eccentrico che permette di regolare la presa del componente verso l'estruso, allontanando o avvicinando le due rotelle opposte. La regolazione avviene regolando con una chiave fissa, solitamente già presente nel kit di assemblaggio della macchina. 
 
 Quanto "stringere" il dado eccentrico di ogni componente? Non va serrato a fondo, ma abbastanza per far smettere alla parte di avere eccessivo gioco. Un buon metodo per regolarlo è tenere ferma la parte con una mano e con l'altra dare piccole regolazioni al dado. Quando le ruote smettono di slittare, ruotando libere, si è giusti ad una aderenza sufficiente. Dopo la regolazione è necessario muovere manualmente il componente lungo tutta la corsa per avvertire se oppone resistenza eccessiva, segnale che indicherebbe una stretta eccessiva dell'eccentrico. Per una guida visiva, date un occhio al video sotto incluso.
-[![Regolazione Eccentrici](https://img.youtube.com/vi/GsEdU8ZtI6U/0.jpg)](https://youtu.be/GsEdU8ZtI6U)
+
+[![Regolazione Eccentrici](https://img.youtube.com/vi/GsEdU8ZtI6U/0.jpg)](https://youtu.be/GsEdU8ZtI6U "Regolazione Eccentrici")
+
 ### Layer non consistenti lungo l'asse Z
 Un problema che affligge diversi utenti riguarda alcuni artefatti nella stampa lungo l'asse Z. Questi artefatti sono solitamente singoli layer più "schiacciati". Il problema è dovuto ad un orientamento spesso non corretto della madrevite dell'asse Z, che tende a divergere rispetto all'estruso di alluminio che compone l'asse X. Il primo passo, già sviluppato poch'anzi, è di verificare che l'asse Z sia in squadra rispetto al corpo della macchina. Successivamente si andrà a verificare se la madrevite è montata bene, andando a verificare se il giunto è montato correttamente e non introduce eccessivo errore sulla concentricità della rotazione della vite. 
 
 L'ultimo step, a cui purtroppo si arriva a dover fare i conti, è il pezzo di plastica fornito da Creality per fissare il motore dell'asse Z all'estruso di alluminio. Purtroppo molto spesso il componente stock si rivela inadeguato per sorreggere il peso del motore e mantenerlo dritto, ma si tratta di un problema facilmente risolvibile. Su Internet si trovano infatti diversi design alternativi che permettono un montaggio più solido e dritto, di cui propongo alcuni design sicuramente funzionali:
 * [Ender 3 / Pro / V2 Z axis motor mount by mknet](https://www.thingiverse.com/thing:4699747)
 * [Ender 3 Z-Axis Damper Mount by AndiArbeit90](https://www.thingiverse.com/thing:3434253)
+
+
 ### Ecco perché i vari cuscinetti e stabilizzatori per la madrevite sono inutili
 Su Thingverse o su Reddit troverete anche molti utenti che propongono di aggiungere un cuscinetto opposto al motore per "raddrizzare" la madrevite. Questo passaggio - salvo non vogliate aggiornare ad un sistema a doppia madrevite - è totalmente inutile e dannoso. La madrevite è utilzzata unicamente come trazione ed avere un lato libero permette di ridurre l'effettivo errore anche in caso di madreviti economiche ed eccessivamente storte, non si tratta di un risparmio da parte dei vari brand ma di una precisa scelta di design da parte del progetto RepRap. Maggiori informazioni, compresa una rappresentazione grafica del fenomeno, sono disponibili nel seguente video youtube.
-[![Spiegazione sulla madrevite "libera"](https://img.youtube.com/vi/2Z7mZVvPlc8/0.jpg)](https://www.youtube.com/watch?v=2Z7mZVvPlc8&t=480s)
+
+[![Spiegazione sulla madrevite "libera"](https://img.youtube.com/vi/2Z7mZVvPlc8/0.jpg)](https://www.youtube.com/watch?v=2Z7mZVvPlc8&t=480s "Spiegazione sulla madrevite 'libera'")
 
 ### Comprato una Ender 3 Pro usata?
 Prima di stampare felicemente con la propria Ender 3 comprata usata, è bene sapere che alcune stampanti appartenenti ai primi lotti venduti hanno avuto alcuni problemi di cui è meglio accertarsi di non essere affetti. Il primo problema riguarda le primissime Ender 3 e Ender 3 Pro immesse nel mercato, in cui erroneamente il firmware stock non aveva abilitato il "Thermal runeaway", una importante funzionalità software in grado di spegnere autonomamente la stampante in caso di letture errate dalle sonde termiche.
@@ -28,7 +34,7 @@ Per accertarsi di non aver acquistato una macchina senza le protezioni termiche 
 
 Riguardo al connettore, date un occhio al seguente video:
 
-[![Connettore XT60](https://img.youtube.com/vi/4yDp9frWkcg/0.jpg)](https://youtu.be/4yDp9frWkcg)
+[![Connettore XT60](https://img.youtube.com/vi/4yDp9frWkcg/0.jpg)](https://youtu.be/4yDp9frWkcg "Connettore XT60")
 
 ## Primi aggiornamenti
 ### Sostituire l'estrusore
@@ -55,10 +61,15 @@ Di seguito alcuni design su Thingverse per racchiudere l'elettronica dello scher
 ### Sostituire il tubo bowden in PTFE con un Capricorn XS
 La Ender 3 Pro, come tante altre stampanti in questa fascia di prezzo, usa un hotend la cui gola non è completamente metallica, ma permette al tubo in PTFE di arrivare a contatto con il nozzle. Si tratta di una soluzione piuttosto ottimale per quanto riguarda la trasmissione del calore, poiché il PTFE è un cattivo conduttore di calore, il filamento rimane freddo fino alla zona calda dell'hotend. Inoltre il basso attrito del PTFE - anche quello economico - lo rende una soluzione più scorrevole rispetto alle gole all-metal economiche, la cui finitura delle superfici interne è spesso troppo ruvida per avere uno scorrimento ottimale del filamento. 
 
-Perché sostituire quindi il PTFE originale se è una soluzione che funziona? In effetti è un aggiornamento trascurabile se con la stampante vi limitate a stampare materiali che richiedono una temperatura relativamente bassa, come PLA e TPU, ma a temperature superiori ai 220 gradi - richiesti per materiali come PETG, ABS e ASA - il bowden vicino al nozzle comincerà a diventare soffice, deformandosi nel tempo e portando ad un inevitabile intasamento dell'hotend. Inoltre potrebbero svilupparsi gas tossici per i piccoli animali domestici. I tubi Capricorn XS e relativi cloni possono invece superare con tranquillità i 260 gradi (fino ai 270 gradi) senza vedere la vita operativa utile ridursi drasticamente. Inoltre con ogni kit di tubi Capricorn vengono dati spesso in dotazione nuovi connettori pneumatici M6 e M8 con cui sostituire quelli stock forniti da Creality, notoriamente di pessima qualità e che tendono ad avere rotture nell'anello dentato interno che dovrebbe garantire la tenuta del connettore, facendo poi muovere il bowden dal gruppo estrusore - causando stringing - o facendo retrarre il bowden dall'hotend, causando gap che possono portare all'intasamento dell'hotend.
+Perché sostituire quindi il PTFE originale se è una soluzione che funziona? In effetti è un aggiornamento trascurabile se con la stampante vi limitate a stampare materiali che richiedono una temperatura relativamente bassa, come PLA e TPU, ma a temperature superiori ai 220 gradi - richiesti per materiali come PETG, ABS e ASA - il bowden vicino al nozzle comincerà a diventare soffice, deformandosi nel tempo e portando ad un inevitabile intasamento dell'hotend. Inoltre potrebbero svilupparsi gas tossici per i piccoli animali domestici.
+
+I tubi Capricorn XS (e relativi cloni) possono invece superare con tranquillità i 260 gradi (fino ai 270 gradi) senza vedere la vita operativa utile ridursi drasticamente. Inoltre con ogni kit di tubi Capricorn vengono dati spesso in dotazione nuovi connettori pneumatici M6 e M8 con cui sostituire quelli stock forniti da Creality, notoriamente di pessima qualità e che tendono ad avere rotture nell'anello dentato interno che dovrebbe garantire la tenuta del connettore, facendo poi muovere il bowden dal gruppo estrusore - causando stringing - o facendo retrarre il bowden dall'hotend, causando gap che possono portare all'intasamento dell'hotend.
 
 ### Rendere più efficente il letto riscaldato con dell'isolamento termico
-Molte stampanti 3d di generazione successiva alla Ender 3 Pro adottano questa miglioria già di fabbrica. Uno dei tempi di attesa più lunghi prima di iniziare una stampa è appunto il riscaldamento del piatto, poiché una lastra di circa 230mm di lato richiede diverso tempo per essere portata in temperatura anche utilizzando i 24v. Diversi prodotti economici e reperibili anche su Amazon, sono materiali dotati di cattiva conducibilità termica e che possono essere adoperati per fare una sorta di "cappotto termico" al letto della stampante. Questa modifica permetterà non solo di avviare prima le stampe, ma anche di risparmiare corrente elettrica poiché il letto ci metterrà più tempo a raffreddarsi, richiedendo meno inpulsi di corrente dalla scheda elettrica per mantenerlo a temperatura costante.
+Molte stampanti 3d di generazione successiva alla Ender 3 Pro adottano questa miglioria già di fabbrica. Uno dei tempi di attesa più lunghi prima di iniziare una stampa è appunto il riscaldamento del piatto, poiché una lastra di circa 230mm di lato richiede diverso tempo per essere portata in temperatura anche utilizzando i 24v. 
+
+Diversi prodotti economici e reperibili anche su Amazon, sono materiali dotati di cattiva conducibilità termica e che possono essere adoperati per fare una sorta di "cappotto termico" al letto della stampante. Questa modifica permetterà non solo di avviare prima le stampe, ma anche di risparmiare corrente elettrica poiché il letto ci metterrà più tempo a raffreddarsi, richiedendo meno inpulsi di corrente dalla scheda elettrica per mantenerlo a temperatura costante.
+
  Tra i prodotti disponibili ricordiamo:
  * Pannelli di cotone, schiuma e alluminia disponibili a circa 8-10 euro per i fogli da 230mm di lato
  * Sughero, più economico ma non consigliato perché potenzialmente infiammabile
